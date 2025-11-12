@@ -1,0 +1,12 @@
+/venv/
+/.venv/
+/.idea/
+/logs/
+/.git/
+__pycache__/
+logs/
+*.pyc
+*.spec
+*.bin
+*.db
+.env

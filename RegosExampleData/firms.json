@@ -1,0 +1,55 @@
+{
+    "ok": true,
+    "result": [
+        {
+            "id": 1,
+            "group": {
+                "id": 1,
+                "parent_id": 0,
+                "name": "Предприятие",
+                "child_count": 0,
+                "last_update": 1753857759
+            },
+            "deleted_mark": false,
+            "last_update": 1762530182,
+            "name": "ROFEEV TECHNOLOGY TASH",
+            "fullname": "",
+            "boss_name": "",
+            "address": "",
+            "phones": "",
+            "description": "",
+            "inn": "",
+            "bank_name": "",
+            "mfo": "",
+            "rs": "",
+            "oked": "",
+            "vat_index": ""
+        },
+        {
+            "id": 2,
+            "group": {
+                "id": 1,
+                "parent_id": 0,
+                "name": "Предприятие",
+                "child_count": 0,
+                "last_update": 1753857759
+            },
+            "deleted_mark": false,
+            "last_update": 1762530188,
+            "name": "ROFEEV TECHNOLOGY SAM",
+            "fullname": "",
+            "boss_name": "",
+            "address": "",
+            "phones": "",
+            "description": "",
+            "inn": "",
+            "bank_name": "",
+            "mfo": "",
+            "rs": "",
+            "oked": "",
+            "vat_index": ""
+        }
+    ],
+    "next_offset": 0,
+    "total": 2
+}

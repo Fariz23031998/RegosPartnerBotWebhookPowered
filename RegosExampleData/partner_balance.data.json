@@ -1,0 +1,305 @@
+{
+    "ok": true,
+    "result": [
+        {
+            "exchange_rate": 1.0,
+            "currency": {
+                "id": 1,
+                "code_num": 860,
+                "code_chr": "UZS",
+                "name": "Узбекский сум",
+                "exchange_rate": 1.0,
+                "is_base": true,
+                "deleted": false,
+                "last_update": 1664715017
+            },
+            "currency_amount": 15231700.0,
+            "id": 35,
+            "date": 1756367261,
+            "document_code": "2025-0000019",
+            "document_id": 19,
+            "start_amount": 0.0,
+            "debit": 0.0,
+            "credit": 15231700.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 1,
+                "name": "Склад: Поступление от контрагента",
+                "last_update": 1533650969
+            }
+        },
+        {
+            "exchange_rate": 1.0,
+            "currency": {
+                "id": 1,
+                "code_num": 860,
+                "code_chr": "UZS",
+                "name": "Узбекский сум",
+                "exchange_rate": 1.0,
+                "is_base": true,
+                "deleted": false,
+                "last_update": 1664715017
+            },
+            "currency_amount": 10000000.0,
+            "id": 36,
+            "date": 1756367928,
+            "document_code": "2025-0000004",
+            "document_id": 4,
+            "start_amount": -15231700.0,
+            "debit": 10000000.0,
+            "credit": 0.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 5,
+                "name": "Платежи",
+                "last_update": 1533650969
+            }
+        },
+        {
+            "exchange_rate": 1.0,
+            "currency": {
+                "id": 1,
+                "code_num": 860,
+                "code_chr": "UZS",
+                "name": "Узбекский сум",
+                "exchange_rate": 1.0,
+                "is_base": true,
+                "deleted": false,
+                "last_update": 1664715017
+            },
+            "currency_amount": 1265000.0,
+            "id": 42,
+            "date": 1756823198,
+            "document_code": "2025-0000021",
+            "document_id": 21,
+            "start_amount": -5231700.0,
+            "debit": 0.0,
+            "credit": 1265000.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 1,
+                "name": "Склад: Поступление от контрагента",
+                "last_update": 1533650969
+            }
+        },
+        {
+            "exchange_rate": 1.0,
+            "currency": {
+                "id": 1,
+                "code_num": 860,
+                "code_chr": "UZS",
+                "name": "Узбекский сум",
+                "exchange_rate": 1.0,
+                "is_base": true,
+                "deleted": false,
+                "last_update": 1664715017
+            },
+            "currency_amount": 18500000.0,
+            "id": 43,
+            "date": 1756977446,
+            "document_code": "2025-0000022",
+            "document_id": 22,
+            "start_amount": -6496700.0,
+            "debit": 0.0,
+            "credit": 18500000.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 1,
+                "name": "Склад: Поступление от контрагента",
+                "last_update": 1533650969
+            }
+        },
+        {
+            "exchange_rate": 1.0,
+            "currency": {
+                "id": 1,
+                "code_num": 860,
+                "code_chr": "UZS",
+                "name": "Узбекский сум",
+                "exchange_rate": 1.0,
+                "is_base": true,
+                "deleted": false,
+                "last_update": 1664715017
+            },
+            "currency_amount": 100000.0,
+            "id": 164,
+            "date": 1762340983,
+            "document_code": "2025-0000033",
+            "document_id": 33,
+            "start_amount": -24996700.0,
+            "debit": 100000.0,
+            "credit": 0.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 5,
+                "name": "Платежи",
+                "last_update": 1533650969
+            }
+        },
+        {
+            "exchange_rate": 12125.0,
+            "currency": {
+                "id": 2,
+                "code_num": 861,
+                "code_chr": "USD",
+                "name": "Доллар",
+                "exchange_rate": 12125.0,
+                "is_base": false,
+                "deleted": false,
+                "last_update": 1759477687
+            },
+            "currency_amount": 0.041,
+            "id": 183,
+            "date": 1762885595,
+            "document_code": "2025-0000037",
+            "document_id": 37,
+            "start_amount": 0.0,
+            "debit": 500.0,
+            "credit": 0.0,
+            "firm": {
+                "id": 1,
+                "group": {
+                    "id": 1,
+                    "parent_id": 0,
+                    "name": "Предприятие",
+                    "child_count": 0,
+                    "last_update": 1753857759
+                },
+                "deleted_mark": false,
+                "last_update": 1762530182,
+                "name": "ROFEEV TECHNOLOGY TASH",
+                "fullname": "",
+                "boss_name": "",
+                "address": "",
+                "phones": "",
+                "description": "",
+                "inn": "",
+                "bank_name": "",
+                "mfo": "",
+                "rs": "",
+                "oked": "",
+                "vat_index": ""
+            },
+            "document_type": {
+                "id": 5,
+                "name": "Платежи",
+                "last_update": 1533650969
+            }
+        }
+    ]
+}
