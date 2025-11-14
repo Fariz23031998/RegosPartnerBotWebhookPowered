@@ -3,11 +3,11 @@ from datetime import datetime
 from core.conf import translator_service, TEST_INTEGRATION_TOKEN
 from collections import defaultdict
 
+from core.utils import write_json_file
 from regos.reports import RegosReports
 
 
-def format_partner_balance(data: list, lang: str = "ru", translator=translator_service, show_firm: bool = True,
-                           newest_first: bool = False) -> list[str]:
+def format_partner_balance(data: list, lang: str = "ru", translator=translator_service, newest_first: bool = False) -> list[str]:
     """
     Formats partner balance data for Telegram messages (HTML).
     Creates a separate message for each currency.
@@ -16,15 +16,11 @@ def format_partner_balance(data: list, lang: str = "ru", translator=translator_s
         data: list of dicts with document info
         lang: 'en', 'ru', 'uz'
         translator: object with translator.get(key, lang)
-        show_firm: include firm header if True
         newest_first: reverse order of operations
     """
     if not data:
         return [translator.get("no_data", lang)]
 
-    # --- Determine firm name
-    firm_name = data[0].get("firm", {}).get("name", "")
-    firm_header = f"🏢 <b>{firm_name}</b>\n\n" if (show_firm and firm_name) else ""
 
     # --- Group operations by currency
     currencies = {}
@@ -39,8 +35,7 @@ def format_partner_balance(data: list, lang: str = "ru", translator=translator_s
         operations.sort(key=lambda x: x.get("date", 0), reverse=newest_first)
         last_op = operations[-1]
 
-        text = firm_header
-        text += f"💱 <b>{currency_name}</b>\n\n"
+        text = f"💱 <b>{currency_name}</b>\n\n"
 
         for op in operations:
             doc_type_id = op.get("document_type", {}).get("id", "0")
@@ -77,7 +72,7 @@ def format_partner_balance(data: list, lang: str = "ru", translator=translator_s
         while len(text) > 2048:
             split_idx = text.rfind("\n\n", 0, 2048)
             messages.append(text[:split_idx].strip())
-            text = firm_header + text[split_idx:].strip()
+            text = text[split_idx:].strip()
 
         messages.append(text.strip())
 
@@ -133,7 +128,7 @@ def format_total(data: list, lang: str = "ru", translator=translator_service) ->
             total_currency_sum += total_value
 
             # Compose text for document type
-            doc_type_name = translator.get(f"partner_document_type{doc_type_id}", lang)
+            doc_type_name = translator.get(f"plural_partner_document_type{doc_type_id}", lang)
             text += (
                 f"📄 <b>{doc_type_name}</b>: {total_value:,.2f}\n"
             )
@@ -162,20 +157,46 @@ def format_total(data: list, lang: str = "ru", translator=translator_service) ->
         messages.append(text.strip())
 
     word_total = translator.get('total', lang)
-    total_message = word_total + "\n"
+    total_message = ""
     for currency_info in currency_list:
         exchange_rate = currency_info['exchange_rate']
-        total_message += f"{word_total} ({currency_info['name']}): {total_in_base_currency / exchange_rate:,.2f}\n"
+        total_message += f"<b>{word_total} ({currency_info['name']}):</b> {total_in_base_currency / exchange_rate:,.2f}\n"
 
     messages.append(total_message.strip())
 
     return messages
 
-regos_reports = RegosReports()
-data = asyncio.run(
-    regos_reports.partner_balance_report(token=TEST_INTEGRATION_TOKEN, partner_id=6, firm_id=1, start_time="01.01.2025 00:00:00", end_time="12.11.2025 00:00:00")
-)
+# Example usage:
+from core.conf import translator_service, TEST_INTEGRATION_TOKEN
+from regos.reports import RegosReports
+import asyncio
 
-test_str = format_total(data=data["result"], lang="ru", translator=translator_service)
-for i in test_str:
-    print(i)
+regos_reports = RegosReports()
+
+
+# data = asyncio.run(
+#     regos_reports.partner_balance_report(
+#         token=TEST_INTEGRATION_TOKEN,
+#         partner_id=6,
+#         firm_id=1,
+#         start_time="01.01.2025 00:00:00",
+#         end_time="12.11.2025 00:00:00"
+#     )
+# )
+
+# Format detailed balance
+# format_partner_balance_result = format_partner_balance(data=data["result"], lang="uz", translator=translator_service)
+#
+# for r in format_partner_balance_result:
+#     print(r)
+
+
+# Format totals
+# format_total_result = format_total(data=data["result"], lang="uz", translator=translator_service)
+# for f in format_total_result:
+#     print(f)
+
+# Format wholesale
+
+#
+

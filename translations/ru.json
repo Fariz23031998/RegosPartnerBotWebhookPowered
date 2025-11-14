@@ -10,12 +10,20 @@
       "remainder": "Остаток",
       "date": "Дата",
       "current": "Текущий",
+      "currency_total": "Итого по валюте",
+      "total": "Итого",
 
       "partner_document_type1": "Продажа",
       "partner_document_type2": "Возврат от партнера",
       "partner_document_type5": "Платеж",
       "partner_document_type9": "Закупка",
       "partner_document_type11": "Возврат партнеру",
+
+      "plural_partner_document_type1": "Продажи",
+      "plural_partner_document_type2": "Возвраты от партнёра",
+      "plural_partner_document_type5": "Платежи",
+      "plural_partner_document_type9": "Закупки",
+      "plural_partner_document_type11": "Возвраты партнёру",
 
       "document_type1": "Склад: Поступление от контрагента",
       "document_type2": "Возврат контрагенту",

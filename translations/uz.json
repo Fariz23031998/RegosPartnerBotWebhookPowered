@@ -10,12 +10,20 @@
       "remainder": "Qoldiq",
       "date": "Sana",
       "current": "Hozirgi",
+      "currency_total": "Valyutalar bo'yicha jami",
+      "total": "Jami",
 
       "partner_document_type1": "Sotuv",
       "partner_document_type2": "Hamkordan qaytarish",
       "partner_document_type5": "To‘lov",
       "partner_document_type9": "Xarid",
       "partner_document_type11": "Hamkorga qaytarish",
+
+      "plural_partner_document_type1": "Sotuvlar",
+      "plural_partner_document_type2": "Hamkordan qaytarishlar",
+      "plural_partner_document_type5": "To‘lovlar",
+      "plural_partner_document_type9": "Xaridlar",
+      "plural_partner_document_type11": "Hamkorga qaytarishlar",
 
       "document_type1": "Ombor: Yetkazib beruvchidan qabul qilish",
       "document_type2": "Yetkazib beruvchiga qaytarish",

@@ -10,12 +10,20 @@
       "remainder": "Balance",
       "date": "Date",
       "current": "current",
+      "currency_total": "Currency total",
+      "total": "Total",
 
       "partner_document_type1": "Sale",
       "partner_document_type2": "Return from partner",
       "partner_document_type5": "Payment",
       "partner_document_type9": "Purchase",
       "partner_document_type11": "Return to partner",
+
+      "plural_partner_document_type1": "Sales",
+      "plural_partner_document_type2": "Returns from partner",
+      "plural_partner_document_type5": "Payments",
+      "plural_partner_document_type9": "Purchases",
+      "plural_partner_document_type11": "Returns to partner",
 
       "document_type1": "Warehouse: Receipt from contractor",
       "document_type2": "Return to contractor",

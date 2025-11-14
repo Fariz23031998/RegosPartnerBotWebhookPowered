@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from regos.format_string_message import format_partner_balance  # change to real module path
+from format_messages.partner_balance import format_partner_balance  # change to real module path
 
 
 class DummyTranslator:

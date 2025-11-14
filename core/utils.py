@@ -298,7 +298,7 @@ def read_hashed_data(filename="license.bin"):
 
 def write_json_file(
         data: Any,
-        file_path: str = "test.json",
+        file_path: str = "partner_operations.json",
         indent: int = 4,
         ensure_ascii: bool = False,
         create_dirs: bool = True

@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 import aiohttp
 import json
 import asyncio
@@ -8,81 +10,58 @@ import logging
 
 from core.conf import APP_NAME, TEST_INTEGRATION_TOKEN
 from core.utils import write_json_file
+from regos.regos_rate_limiter import RegosRateLimiter
 
 logger = logging.getLogger(APP_NAME)
 
-async def regos_async_api_request(endpoint: str, request_data: dict | list, token: str,
-                                  timeout_seconds: int = 30) -> dict:
+# Example global registry
+regos_limiters: Dict[str, RegosRateLimiter] = {}
+
+def get_regos_limiter(token: str) -> RegosRateLimiter:
+    if token not in regos_limiters:
+        regos_limiters[token] = RegosRateLimiter(rate=2, burst=50)
+    return regos_limiters[token]
+
+
+async def regos_async_api_request(
+    endpoint: str,
+    request_data: dict | list,
+    token: str,
+    timeout_seconds: int = 30,
+) -> dict:
     """
-    Make an asynchronous request to the REGOS API.
-
-    Parameters:
-        endpoint (str): The specific API endpoint to call.
-        request_data (dict | list): The data to send in the request body.
-        token (str): Integration token.
-        timeout_seconds (int): Timeout in seconds (default: 30).
-
+    Make an asynchronous request to the REGOS API with built-in rate-limit handling.
+    Args:
+        endpoint: REGOS API endpoint path.
+        request_data: Request payload.
+        token: Integration token.
+        timeout_seconds: Request timeout.
     Returns:
-        dict: The API response.
-
+        dict[str, Any]: Parsed JSON response from REGOS.
     Raises:
-        HTTPException: For various API errors including timeouts, client errors, and non-200 status codes.
+        HTTPException: For client/network/API errors.
     """
-    # Base endpoint URL
+
+    limiter = get_regos_limiter(token)
+    await limiter.acquire()  # Wait for token before making request
+
     full_url = f"https://integration.regos.uz/gateway/out/{token}/v1/{endpoint}"
-
-    # Required headers
-    headers = {
-        "Content-Type": "application/json;charset=utf-8"
-    }
-
-    # Create timeout configuration
+    headers = {"Content-Type": "application/json;charset=utf-8"}
     timeout = aiohttp.ClientTimeout(total=timeout_seconds)
 
-    try:
-        # Make the POST request asynchronously with timeout
-        async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.post(
-                    full_url,
-                    headers=headers,
-                    data=json.dumps(request_data)
-            ) as response:
-                # Check if response is successful (code 200)
-                if response.status == 200:
-                    data = await response.json()
+    async with aiohttp.ClientSession(timeout=timeout) as session:
+        async with session.post(full_url, headers=headers, data=json.dumps(request_data)) as response:
+            if response.status == 429:
+                # Safety: still retry with exponential backoff
+                await asyncio.sleep(1)
+                return await regos_async_api_request(endpoint, request_data, token, timeout_seconds)
+            if response.status == 200:
+                data = await response.json()
+                if not data.get("ok"):
+                    raise HTTPException(400, f"REGOS API error: {data}")
+                return data
+            raise HTTPException(502, f"REGOS API returned {response.status}")
 
-                    # Check if the API returned an error in the response body
-                    if not data.get("ok"):
-                        error_info = data.get("result", {})
-                        error_code = error_info.get("error", "Unknown")
-                        error_desc = error_info.get("description", "Unknown error")
-
-                        logger.error(f"REGOS API error: {error_code} - {error_desc}")
-                        raise HTTPException(
-                            status_code=400,  # Bad Request - business logic error
-                            detail=f"REGOS API error {error_code}: {error_desc}"
-                        )
-
-                    return data
-                else:
-                    logger.info(f"Error: API returned status code {response.status}")
-                    raise HTTPException(
-                        status_code=502,  # Bad Gateway - external API error
-                        detail=f"REGOS API returned status code {response.status}"
-                    )
-
-    except asyncio.TimeoutError:
-        logger.error(f"Error: Request timed out after {timeout_seconds} seconds")
-        raise HTTPException(
-            status_code=504,  # Gateway Timeout
-            detail=f"REGOS API request timed out after {timeout_seconds} seconds"
-        )
-    except aiohttp.ClientError as e:
-        logger.error(f"Error: Client error occurred - {str(e)}")
-        raise HTTPException(
-            status_code=502,  # Bad Gateway - external service error
-            detail=f"REGOS API client error: {str(e)}"
-        )
 
 def regos_api_request(endpoint: str, request_data: dict | list, token: str):
     """
@@ -123,5 +102,5 @@ def regos_api_request(endpoint: str, request_data: dict | list, token: str):
         logger.error(f"Error: API returned status code {response.status_code}")
         return None
 
-test = regos_api_request(request_data={}, endpoint="DocumentType/Get", token=TEST_INTEGRATION_TOKEN)
-write_json_file(test, file_path="../RegosExampleData/DocumentType.json")
+# test = regos_api_request(request_data={}, endpoint="DocumentType/Get", token=TEST_INTEGRATION_TOKEN)
+# write_json_file(test, file_path="../RegosExampleData/DocumentType.json")
